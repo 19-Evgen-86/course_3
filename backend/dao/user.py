@@ -1,0 +1,24 @@
+from backend.dao.model.user import User
+
+
+class UserDao:
+    def __init__(self, session):
+        self.session = session
+
+    def create(self, data: User):
+        with self.session.begin():
+            self.session.add(data)
+
+    def update(self, data: dict, email: str):
+        with self.session.begin():
+            self.session.query(User).filter(User.email == email).update(data)
+
+    def update_pwd(self, pwd: str, email: str):
+        with self.session.begin():
+            self.session.query(User).filter(User.email == email).update({'password': pwd})
+
+    def get(self, email):
+        return self.session.query(User.name, User.surname, User.favorite_genre).filter(User.email == email).first()
+
+    def get_pwd(self, email):
+        return self.session.query(User.password).filter(User.email == email).one()
