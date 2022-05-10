@@ -13,10 +13,6 @@ class UserDao:
         with self.session.begin():
             self.session.query(User).filter(User.email == email).update(data)
 
-    def update_pwd(self, pwd: str, email: str):
-        with self.session.begin():
-            self.session.query(User).filter(User.email == email).update({'password': pwd})
-
     def get(self, email):
         return self.session.query(User.name, User.surname, User.favorite_genre).filter(User.email == email).first()
 

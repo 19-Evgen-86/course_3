@@ -18,7 +18,7 @@ class UserService:
         if result:
             return UserSchema().dump(result)
         else:
-            return {"message": "Пользователь не найден"}
+            return {"message": "Пользователь не найден"}, 404
 
     @handling_exceptions
     def create(self, data):
@@ -26,7 +26,7 @@ class UserService:
         valid_user["password"] = get_hash(valid_user["password"])
         user = User(**valid_user)
         self.dao.create(user)
-        return {"message": "Пользователь создан"}
+        return {"message": "Пользователь создан"}, 200
 
     @handling_exceptions
     def update(self, data):
@@ -38,10 +38,10 @@ class UserService:
                 data_update['name'] = data['name']
             if 'surname' in data:
                 data_update["surname"] = data["surname"]
-            if 'favorite_genre' in data:
-                data_update['favorite_genre'] = data['favorite_genre']
+            if 'favourite_genre' in data:
+                data_update['favorite_genre'] = data['favourite_genre']
             self.dao.update(data_update, email)
-            return {"message": "данные обновлены"}
+            return {"message": "данные обновлены"}, 201
 
         elif data['method'] == "put":
             email = decode_token(data['token'])["email"]
@@ -52,11 +52,10 @@ class UserService:
             # сравниваем полученные хеши
             if compare_pwd(user_pwd, old_pwd):
                 # если они совпадают, то сохраняем новый пароль
-                pwd = get_hash(data["new_password"])
-                self.dao.update_pwd(pwd, email)
-                return {"message": "пароль обновлен"}
+                data_update['password'] = get_hash(data["new_password"])
+                self.dao.update(data_update, email)
+                return {"message": "пароль обновлен"}, 201
             else:
                 # если не совпадают возвращаем ошибку
-                return {"error": "неверный пароль"}
-        else:
-            return {'error': "unknown error"}
+                return {"error": "неверный пароль"}, 404
+

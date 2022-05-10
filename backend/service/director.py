@@ -15,17 +15,17 @@ class DirectorService:
         else:
             result = self.director_dao.get_all()
         if result:
-            return DirectorSchema(many=True).dump(result)
+            return DirectorSchema(many=True).dump(result), 200
         else:
-            return {"message": "Genres into database not found"}
+            return {"message": "Directors into database not found"}, 404
 
     @handling_exceptions
     def get_director(self, did):
         result = self.director_dao.get_one(did)
         if result:
-            return DirectorSchema().dump(result)
+            return DirectorSchema().dump(result), 200
         else:
-            return {"message": f"Genre with ID: '{did}' not found"}
+            return {"message": f"Genre with ID: '{did}' not found"}, 404
 
     @handling_exceptions
     def add_director(self, data):
@@ -33,16 +33,16 @@ class DirectorService:
         director = Director(**director_dict)
         self.director_dao.create(director)
 
-        return {"message": f"director {Director.name} added into database"}
+        return {"message": f"director {Director.name} added into database"}, 200
 
     @handling_exceptions
     def update_movie(self, data, did):
 
         director_dict = DirectorSchema().load(data)
         self.director_dao.update(director_dict, did)
-        return {"message": f"Director with ID: '{did}' is updated"}
+        return {"message": f"Director with ID: '{did}' is updated"}, 201
 
     @handling_exceptions
     def delete_movie(self, did):
         self.director_dao.delete(did)
-        return {"message": f"Director with ID: '{did}' is deleted"}
+        return {"message": f"Director with ID: '{did}' is deleted"}, 204

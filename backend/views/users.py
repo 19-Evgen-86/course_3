@@ -8,26 +8,22 @@ from backend.tools.secure import get_token_from_headers
 user_ns = Namespace('user')
 
 
-
 @user_ns.route("/")
 class UserView(Resource):
     @auth_required
-    @user_ns.doc(params={"email": "Профиль по email пользователя"})
     def get(self):
         token = get_token_from_headers(request.headers)
-        print(request.headers)
         result = user_service.get(token)
+        print(result)
         return result, 200
 
     @auth_required
-    @user_ns.doc(params={'data': "Данные для обновления(имя, фамилия, любимый жанр) в json формате"})
     def patch(self):
         data = request.json
         data["method"] = 'patch'
         data['token'] = get_token_from_headers(request.headers)
         result = user_service.update(data)
         return result, 200
-
 
 
 @user_ns.route("/password/")
@@ -38,4 +34,4 @@ class UserView(Resource):
         data["method"] = 'put'
         data['token'] = get_token_from_headers(request.headers)
         result = user_service.update(data)
-        return result, 201
+        return result

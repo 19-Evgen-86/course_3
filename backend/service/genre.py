@@ -19,17 +19,17 @@ class GenreService:
         else:
             result = self.genre_dao.get_all()
         if result:
-            return GenreSchema(many=True).dump(result)
+            return GenreSchema(many=True).dump(result), 200
         else:
-            return {"message": "Genres into database not found"}
+            return {"message": "Genres into database not found"}, 404
 
     @handling_exceptions
     def get_genre(self, gid):
         result = self.genre_dao.get_one(gid)
         if result:
-            return GenreSchema().dump(result)
+            return GenreSchema().dump(result), 200
         else:
-            return {"message": f"Genre with ID: '{gid}' not found"}
+            return {"message": f"Genre with ID: '{gid}' not found"}, 404
 
     @handling_exceptions
     def add_genre(self, data):
@@ -37,16 +37,16 @@ class GenreService:
         genre = Genre(**genre_dict)
         self.genre_dao.create(genre)
 
-        return {"message": f"Genre {Genre.title} added into database"}
+        return {"message": f"Genre {Genre.title} added into database"}, 200
 
     @handling_exceptions
     def update_genre(self, data, gid):
 
         genre_dict = GenreSchema().load(data)
         self.genre_dao.update(genre_dict, gid)
-        return {"message": f"Genre with ID: '{gid}' is updated"}
+        return {"message": f"Genre with ID: '{gid}' is updated"}, 201
 
     @handling_exceptions
     def delete_genre(self, gid):
         self.genre_dao.delete(gid)
-        return {"message": f"Genre with ID: '{gid}' is deleted"}
+        return {"message": f"Genre with ID: '{gid}' is deleted"}, 204
