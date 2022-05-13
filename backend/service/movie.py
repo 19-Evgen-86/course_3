@@ -48,14 +48,14 @@ class MovieService:
         movie = Movie(**movie_dict)
         self.movie_dao.create(movie)
 
-        return {"message": f"Movie {Movie.title} added into database"}, 200
+        return {"message": f"Movie {Movie.title} added into database"}, 201
 
     @handling_exceptions
     def update_movie(self, data, mid):
 
         movie_dict = MovieSchema.load(data)
         self.movie_dao.update(movie_dict, mid)
-        return {"message": f"Movie with ID: '{mid}' is updated"}, 210
+        return {"message": f"Movie with ID: '{mid}' is updated"}, 204
 
     @handling_exceptions
     def delete_movie(self, mid):

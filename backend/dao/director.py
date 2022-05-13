@@ -2,7 +2,7 @@ from backend.config import PAGE_SIZE
 from backend.dao.model.directors import Director
 
 
-class DirectorDao():
+class DirectorDao:
     """
     Класс для взаимодействия c таблицей режиссеров в БД
     """

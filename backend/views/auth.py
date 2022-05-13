@@ -14,7 +14,6 @@ class AuthView(Resource):
     def post(self):
         return user_service.create(request.json)
 
-
 @auth_ns.route("/login/")
 class AuthView(Resource):
     # авторизация пользователя
@@ -23,5 +22,5 @@ class AuthView(Resource):
 
     # обновление токенов
     def put(self):
-        data = get_token_from_headers(request.headers)
-        return auth_service.get_new_tokens(data)
+        token = get_token_from_headers(request.headers)
+        return auth_service.get_new_tokens(token)

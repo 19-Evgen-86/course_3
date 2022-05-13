@@ -39,5 +39,5 @@ class GenreSchema(Schema):
    Схема для сериализация
    """
 
-    id = fields.Int(dump_only=True,required=True)
+    id = fields.Int(dump_only=True, required=True)
     name = fields.Str(required=True)

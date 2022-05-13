@@ -3,7 +3,6 @@ from backend.dao.model.directors import Director
 from backend.schemas.base import DirectorSchema
 from backend.tools.decorators import handling_exceptions
 
-
 class DirectorService:
     def __init__(self, director_dao: DirectorDao):
         self.director_dao = director_dao
@@ -33,16 +32,16 @@ class DirectorService:
         director = Director(**director_dict)
         self.director_dao.create(director)
 
-        return {"message": f"director {Director.name} added into database"}, 200
+        return {"message": f"director {Director.name} added into database"}, 201
 
     @handling_exceptions
-    def update_movie(self, data, did):
+    def update(self, data, did):
 
         director_dict = DirectorSchema().load(data)
         self.director_dao.update(director_dict, did)
-        return {"message": f"Director with ID: '{did}' is updated"}, 201
+        return {"message": f"Director with ID: '{did}' is updated"}, 204
 
     @handling_exceptions
-    def delete_movie(self, did):
+    def delete(self, did):
         self.director_dao.delete(did)
         return {"message": f"Director with ID: '{did}' is deleted"}, 204

@@ -37,14 +37,14 @@ class GenreService:
         genre = Genre(**genre_dict)
         self.genre_dao.create(genre)
 
-        return {"message": f"Genre {Genre.title} added into database"}, 200
+        return {"message": f"Genre {Genre.title} added into database"}, 201
 
     @handling_exceptions
     def update_genre(self, data, gid):
 
         genre_dict = GenreSchema().load(data)
         self.genre_dao.update(genre_dict, gid)
-        return {"message": f"Genre with ID: '{gid}' is updated"}, 201
+        return {"message": f"Genre with ID: '{gid}' is updated"}, 204
 
     @handling_exceptions
     def delete_genre(self, gid):

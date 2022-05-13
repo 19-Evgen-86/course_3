@@ -3,9 +3,10 @@
 
 from flask import Flask
 from flask_cors import CORS
-from flask_restx import Api
+from flask_restx import Api, fields
 
 from backend.tools.setup_db import db
+from backend.views.favotites import favorites_ns
 from config import Config
 from insert_database_data import create_data
 from views.auth import auth_ns
@@ -31,7 +32,6 @@ def register_extensions(app):
         db.create_all()
         create_data(db)
 
-
     api = Api(app, doc="/docs")
 
     api.add_namespace(director_ns)
@@ -39,11 +39,10 @@ def register_extensions(app):
     api.add_namespace(genre_ns)
     api.add_namespace(user_ns)
     api.add_namespace(auth_ns)
-
-
+    api.add_namespace(favorites_ns)
 
 
 app = create_app(Config())
 
 if __name__ == '__main__':
-    app.run()
+        app.run()

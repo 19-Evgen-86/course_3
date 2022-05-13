@@ -14,7 +14,6 @@ class UserView(Resource):
     def get(self):
         token = get_token_from_headers(request.headers)
         result = user_service.get(token)
-        print(result)
         return result, 200
 
     @auth_required

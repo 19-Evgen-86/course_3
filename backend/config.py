@@ -17,3 +17,4 @@ class Config:
     ALGO = 'HS256'
     TOKEN_EXPIRE_MINUTES = 15
     TOKEN_EXPIRE_DAYS = 130
+    RESTX_MASK_SWAGGER = False

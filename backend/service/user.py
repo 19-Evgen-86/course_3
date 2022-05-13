@@ -54,6 +54,7 @@ class UserService:
                 # если они совпадают, то сохраняем новый пароль
                 data_update['password'] = get_hash(data["new_password"])
                 self.dao.update(data_update, email)
+
                 return {"message": "пароль обновлен"}, 201
             else:
                 # если не совпадают возвращаем ошибку

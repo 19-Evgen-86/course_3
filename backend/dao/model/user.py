@@ -1,4 +1,5 @@
 from backend.dao.model.base import BaseModel
+from backend.dao.model.favorite import favorites
 from backend.tools.setup_db import db
 
 
@@ -10,6 +11,6 @@ class User(BaseModel, db.Model):
     email = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     favorite_genre = db.Column(db.Integer, db.ForeignKey("genres.id"))
-    # favorite_id = db.Column(db.Integer, db.ForeignKey("favorites.id"))
 
-    favorite = db.relationship("Genre")
+    favorite_genres = db.relationship("Genre")
+    favorite_movies = db.relationship('Movie', secondary=favorites, backref=db.backref('users'))
