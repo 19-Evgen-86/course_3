@@ -14,14 +14,14 @@ directors = director_ns.model('directors', convert_model(DirectorSchema()))
 class DirectorsView(Resource):
     @director_ns.response(200, description="Получен список режиссеров ")
     @director_ns.response(404, description="Данных в БД о режиссерах нет")
+    @director_ns.marshal_with(directors)
     def get(self):
         result = director_service.get_director_all(request.args)
         return result
 
-
     @director_ns.response(201, description="Режиссер добавлен ")
     @director_ns.response(404, description="Ошибка при добавлении")
-    @director_ns.marshal_with(directors)
+    @director_ns.expect(directors)
     def post(self):
         data = request.json
         result = director_service.add_director(data)
@@ -32,13 +32,14 @@ class DirectorsView(Resource):
 class DirectorView(Resource):
     @director_ns.response(200, description="Полученны данные о режиссере по ID")
     @director_ns.response(404, description="Режиссер по ID  не найден ")
+    @director_ns.marshal_with(directors)
     def get(self, id):
         result = director_service.get_director(id)
         return result
 
     @director_ns.response(204, description="данные о режиссере обновлены ")
     @director_ns.response(404, description="Ошибка при обновлении")
-    @director_ns.marshal_with(directors)
+    @director_ns.expect(directors)
     def put(self, id):
         data = request.json
         result = director_service.update(data, id)

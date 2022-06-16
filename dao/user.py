@@ -16,6 +16,9 @@ class UserDao:
     def get(self, email):
         return self.session.query(User).filter(User.email == email).first()
 
+    def get_all(self):
+        return self.session.query(User).all()
+
     def get_pwd(self, email):
         with self.session.begin():
             return self.session.query(User.password).filter(User.email == email).first()

@@ -11,20 +11,21 @@ class UserService:
         self.dao = dao
 
     @handling_exceptions
-    def get(self, token: str):
+    def get(self):
 
-        email = decode_token(token)["email"]
-        result = self.dao.get(email)
+        result = self.dao.get_all()
         if result:
-            return UserSchema().dump(result)
+            return UserSchema(many=True).dump(result), 200
         else:
-            return {"message": "Пользователь не найден"}, 404
+            return {"message": "Список пользователей пуст"}, 404
 
     @handling_exceptions
     def create(self, data):
         valid_user = UserSchema().load(data=data)
         valid_user["password"] = get_hash(valid_user["password"])
         user = User(**valid_user)
+        if self.get(user.email):
+            return {"message": "Такой пользователь уже есть"}, 404
         self.dao.create(user)
         return {"message": "Пользователь создан"}, 200
 
@@ -59,4 +60,3 @@ class UserService:
             else:
                 # если не совпадают возвращаем ошибку
                 return {"error": "неверный пароль"}, 404
-

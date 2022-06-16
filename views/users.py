@@ -10,11 +10,10 @@ user_ns = Namespace('user')
 
 @user_ns.route("/")
 class UserView(Resource):
-    @auth_required
+
     def get(self):
-        token = get_token_from_headers(request.headers)
-        result = user_service.get(token)
-        return result, 200
+        result = user_service.get()
+        return result
 
     @auth_required
     def patch(self):
@@ -22,7 +21,7 @@ class UserView(Resource):
         data["method"] = 'patch'
         data['token'] = get_token_from_headers(request.headers)
         result = user_service.update(data)
-        return result, 200
+        return result
 
 
 @user_ns.route("/password/")
