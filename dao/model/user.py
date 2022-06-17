@@ -8,7 +8,7 @@ class User(BaseModel, db.Model):
     __table_args__ = {'extend_existing': True}
     name = db.Column(db.String(100))
     surname = db.Column(db.String(100))
-    email = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     favorite_genre = db.Column(db.Integer, db.ForeignKey("genres.id"))
 
