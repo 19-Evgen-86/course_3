@@ -10,7 +10,7 @@ user_ns = Namespace('user')
 
 @user_ns.route("/")
 class UserView(Resource):
-
+    @auth_required
     def get(self):
         result = user_service.get()
         return result

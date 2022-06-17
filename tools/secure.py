@@ -65,10 +65,11 @@ def decode_token(token: str):
     decoded_token: dict = {}
     try:
         decoded_token = jwt.decode(token, current_app.config['SECRET_KEY'], current_app.config['ALGO'])
+        return decoded_token
     except jwt.PyJWTError as exc:
         abort(401, message=f"error {exc}")
 
-    return decoded_token
+
 
 
 def compare_pwd(pwd_1, pwd_2):
