@@ -24,8 +24,6 @@ class UserService:
         valid_user = UserSchema().load(data=data)
         valid_user["password"] = get_hash(valid_user["password"])
         user = User(**valid_user)
-        if self.get(user.email):
-            return {"message": "Такой пользователь уже есть"}, 404
         self.dao.create(user)
         return {"message": "Пользователь создан"}, 200
 
