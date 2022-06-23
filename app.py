@@ -14,7 +14,7 @@ from views.directors import director_ns
 from views.genres import genre_ns
 from views.movies import movie_ns
 from views.users import user_ns
-
+from distutils.sysconfig import get_python_lib
 
 # функция создания основного объекта app
 def create_app(config_object):
@@ -44,5 +44,9 @@ def register_extensions(app):
 
 app = create_app(Config())
 
+
 if __name__ == '__main__':
         app.run()
+
+
+
