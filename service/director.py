@@ -1,7 +1,7 @@
 from dao.director import DirectorDao
 from dao.model.directors import Director
 from schemas.base import DirectorSchema
-from tools.decorators import handling_exceptions
+from utilites.decorators import handling_exceptions
 
 class DirectorService:
     def __init__(self, director_dao: DirectorDao):

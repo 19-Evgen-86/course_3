@@ -2,8 +2,8 @@ from flask import request
 from flask_restx import Namespace, Resource
 
 from schemas.base import DirectorSchema
-from tools.implemented import director_service
-from tools.utils import convert_model
+from utilites.implemented import director_service
+from utilites.utils import convert_model
 
 director_ns = Namespace("directors")
 

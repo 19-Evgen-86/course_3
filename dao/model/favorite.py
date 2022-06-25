@@ -1,4 +1,4 @@
-from tools.setup_db import db
+from utilites.setup_db import db
 
 
 # class Favorite(db.Model):

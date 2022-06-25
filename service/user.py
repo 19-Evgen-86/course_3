@@ -1,8 +1,8 @@
 from dao.model.user import User
 from dao.user import UserDao
 from schemas.base import UserSchema
-from tools.decorators import handling_exceptions
-from tools.secure import get_hash, decode_token, compare_pwd
+from utilites.decorators import handling_exceptions
+from utilites.secure import get_hash, decode_token, compare_pwd
 
 
 class UserService:

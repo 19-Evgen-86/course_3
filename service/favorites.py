@@ -1,6 +1,6 @@
 from dao.favorites import FavoritesDao
-from tools.decorators import handling_exceptions
-from tools.secure import decode_token
+from utilites.decorators import handling_exceptions
+from utilites.secure import decode_token
 
 
 class FavoritesService:

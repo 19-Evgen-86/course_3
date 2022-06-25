@@ -11,7 +11,7 @@ from service.favorites import FavoritesService
 from service.genre import GenreService
 from service.movie import MovieService
 from service.user import UserService
-from tools.setup_db import db
+from utilites.setup_db import db
 
 movie_dao = MovieDao(db.session)
 movie_service = MovieService(movie_dao)

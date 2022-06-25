@@ -1,6 +1,6 @@
 from dao.model.base import BaseModel
 from dao.model.favorite import favorites
-from tools.setup_db import db
+from utilites.setup_db import db
 
 
 class User(BaseModel, db.Model):

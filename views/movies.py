@@ -2,8 +2,8 @@ from flask import request
 from flask_restx import Namespace, Resource
 
 from schemas.base import MovieSchema
-from tools.implemented import movie_service
-from tools.utils import convert_model
+from utilites.implemented import movie_service
+from utilites.utils import convert_model
 
 movie_ns = Namespace("movies")
 movies = movie_ns.model("movies", convert_model(MovieSchema()))

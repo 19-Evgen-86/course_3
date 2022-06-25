@@ -2,9 +2,9 @@ from flask import request
 from flask_restx import Namespace, Resource
 
 from schemas.base import UserSchema
-from tools.implemented import auth_service, user_service
-from tools.secure import get_token_from_headers
-from tools.utils import convert_model
+from utilites.implemented import auth_service, user_service
+from utilites.secure import get_token_from_headers
+from utilites.utils import convert_model
 
 auth_ns = Namespace("auth")
 

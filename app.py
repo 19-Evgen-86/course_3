@@ -3,10 +3,11 @@
 
 from flask import Flask
 from flask_cors import CORS
-from flask_restx import Api, fields
+from flask_restx import Api
 
-from tools.setup_db import db
+
 from views.favotites import favorites_ns
+from utilites.setup_db import db
 from config import Config
 from insert_database_data import create_data
 from views.auth import auth_ns
@@ -14,7 +15,7 @@ from views.directors import director_ns
 from views.genres import genre_ns
 from views.movies import movie_ns
 from views.users import user_ns
-from distutils.sysconfig import get_python_lib
+
 
 # функция создания основного объекта app
 def create_app(config_object):
@@ -44,9 +45,5 @@ def register_extensions(app):
 
 app = create_app(Config())
 
-
 if __name__ == '__main__':
-        app.run()
-
-
-
+    app.run()
