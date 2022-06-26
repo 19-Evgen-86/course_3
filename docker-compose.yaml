@@ -4,5 +4,7 @@ services:
   api:
     build:
       context: .
+    image: egrigorev/lesson_26
     ports:
       - 80:80
+
