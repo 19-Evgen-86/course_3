@@ -1,6 +1,6 @@
 from dao.auth import AuthDao
-from tools.decorators import handling_exceptions
-from tools.secure import get_hash, create_tokens, decode_token
+from utilites.decorators import handling_exceptions
+from utilites.secure import get_hash, create_tokens, decode_token
 
 
 class AuthService:

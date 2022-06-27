@@ -1,7 +1,7 @@
 from dao.genre import GenreDao
 from dao.model.genres import Genre
 from schemas.base import GenreSchema
-from tools.decorators import handling_exceptions
+from utilites.decorators import handling_exceptions
 
 genre_schemas = GenreSchema(many=True)
 genre_schema = GenreSchema()

@@ -2,8 +2,8 @@ from flask import request
 from flask_restx import Namespace, Resource
 
 from schemas.base import GenreSchema
-from tools.implemented import genre_service
-from tools.utils import convert_model
+from utilites.implemented import genre_service
+from utilites.utils import convert_model
 
 genre_ns = Namespace("genres")
 

@@ -1,7 +1,7 @@
 from dao.model.movies import Movie
 from dao.movie import MovieDao
 from schemas.base import MovieSchema
-from tools.decorators import handling_exceptions
+from utilites.decorators import handling_exceptions
 
 
 class MovieService:

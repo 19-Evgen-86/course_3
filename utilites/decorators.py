@@ -1,7 +1,7 @@
 from functools import wraps
 
 from flask import request, abort
-from tools.secure import get_token_from_headers, decode_token
+from utilites.secure import get_token_from_headers, decode_token
 
 
 def handling_exceptions(func):

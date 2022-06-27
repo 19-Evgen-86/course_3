@@ -1,9 +1,9 @@
 from flask import request
 from flask_restx import Namespace, Resource
 
-from tools.decorators import auth_required
-from tools.implemented import favorites_movies_service
-from tools.secure import get_token_from_headers
+from utilites.decorators import auth_required
+from utilites.implemented import favorites_movies_service
+from utilites.secure import get_token_from_headers
 
 favorites_ns = Namespace("favorites")
 

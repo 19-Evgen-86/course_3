@@ -1,6 +1,6 @@
 
 from dao.model.base import BaseModel
-from tools.setup_db import db
+from utilites.setup_db import db
 
 
 class Director(BaseModel, db.Model):
