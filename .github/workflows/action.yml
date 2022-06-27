@@ -1,5 +1,5 @@
 name: lesson_26
-on:[push]
+on: [push]
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
