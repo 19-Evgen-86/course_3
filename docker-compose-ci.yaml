@@ -5,6 +5,5 @@ services:
     image: egrigorev/lesson_26:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     ports:
       - 80:80
-    volumes:
-      - ./base.db:/code/DB/
+
 
