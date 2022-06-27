@@ -39,4 +39,4 @@ jobs:
           password: ${{ secrets.password }}
           script: |
             cd lesson_26
-            echo ${{ secrets.password }} | sudo -S docker compose up -d
+            echo ${{ secrets.password }} | sudo -S docker-compose up -d
