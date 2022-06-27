@@ -22,12 +22,12 @@ jobs:
         run: |
           mkdir deploy
           cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
-      - name: cp to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.host }}
-          username: ${{ secrets.username }}
-          password: ${{ secrets.password }}
-          source: 'deploy/docker-compose.yaml'
-          target: "lesson_26"
-          strip_components: 1
+#      - name: cp to server
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.host }}
+#          username: ${{ secrets.username }}
+#          password: ${{ secrets.password }}
+#          source: 'deploy/docker-compose.yaml'
+#          target: "lesson_26"
+#          strip_components: 1
