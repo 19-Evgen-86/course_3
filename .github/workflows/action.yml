@@ -9,7 +9,7 @@ jobs:
       - name: docker build
         run: docker build -t egrigorev/lesson_26:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: docker login
-        run: echo ${{ secrets.docker_token }} | docker login -u ${{ secrets.docker_name }} --password-stdin
+        run: echo ${{ secrets.docker_token }} | docker login -u ${{ secrets.docker_USERNAME }} --password-stdin
       - name: docker push
         run: docker push egrigorev/lesson_26:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 
