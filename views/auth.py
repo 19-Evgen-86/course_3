@@ -10,6 +10,7 @@ auth_ns = Namespace("auth")
 
 user = auth_ns.model('user', convert_model(UserSchema()))
 
+
 @auth_ns.route("/register/")
 # регистрация пользователя
 class AuthView(Resource):
@@ -18,6 +19,7 @@ class AuthView(Resource):
     @auth_ns.response(404, description="Пользователь существует ")
     def post(self):
         return user_service.create(request.json)
+
 
 @auth_ns.route("/login/")
 class AuthView(Resource):
